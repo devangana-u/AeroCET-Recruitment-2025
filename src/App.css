@@ -1,65 +1,146 @@
-/* Dark violet and black modern theme */
-:root {
-  --primary: #ff9100;   /* Violet */
-  --background: #1c002a;
-  --text: #f3f3f3;
-  --text-secondary: #c2c2c2;
-}
-
-body, html, #root {
+/* ========== Base Body Warm Theme ========== */
+body {
   margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: var(--background);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fdf2e9, #fbe7c6);
+  color: #8c3f0d; /* rich warm brown */
 }
 
-.app {
+/* ========== Home Page ========== */
+.home-container {
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-}
-
-.content {
   text-align: center;
-  padding: 2rem;
+  animation: fadeIn 1.5s ease forwards;
+  padding: 20px;
+  position: relative;
 }
 
-h1 {
-  font-size: 2.8rem;
-  color: var(--text);
-  margin-bottom: 1rem;
+.home-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #8c3f0d;
+  text-shadow: 1px 1px 4px rgba(240, 170, 100, 0.4);
 }
 
-.highlight {
-  color: var(--primary);
+.home-container p {
+  margin-bottom: 30px;
+  color: #a3561a;
 }
 
-p {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
+/* ========== Buttons ========== */
 .button-group {
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+  gap: 20px;
 }
-
-button {
-  background-color: var(--primary);
-  color: white;
+.button-group button {
+  padding: 12px 28px;
+  background: #f5d5a3;
   border: none;
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 8px;
+  color: #8c3f0d;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 10px rgba(240, 170, 100, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.button-group button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(240, 170, 100, 0.5);
 }
 
-button:hover {
-  background-color: #ff7700;
+/* ========== Flying Plane Animation ========== */
+.plane {
+  position: absolute;
+  top: 30%;
+  left: -100px;
+  font-size: 2.5rem;
+  color: #b05e27;
+  animation: flyAcross 8s linear infinite;
+  text-shadow: 2px 2px 6px rgba(240, 170, 100, 0.5);
+}
+
+/* Fade in for home */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Flying plane animation */
+@keyframes flyAcross {
+  0% {
+    transform: translateX(0) rotate(10deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110vw) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+/* ========== Weather Container with Real Sky ========== */
+.weather-container {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(-45deg, #fdf2e9, #d9ecf2, #fdf2e9, #cbe7f1);
+  background-size: 400% 400%;
+  animation: backgroundFlow 20s ease infinite;
+}
+
+@keyframes backgroundFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* ========== Animated Clouds ========== */
+.cloud {
+  position: absolute;
+  top: 10%;
+  filter: drop-shadow(0 0 6px rgba(100, 60, 40, 0.4));
+}
+
+.cloud1 {
+  left: -150px;
+  width: 160px;
+  opacity: 0.8;
+  animation: moveCloud1 40s linear infinite;
+}
+
+.cloud2 {
+  top: 30%;
+  left: -200px;
+  width: 200px;
+  opacity: 0.7;
+  animation: moveCloud2 25s linear infinite;
+}
+
+@keyframes moveCloud1 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(120vw); }
+}
+@keyframes moveCloud2 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(120vw); }
 }
